@@ -1,0 +1,81 @@
+
+<div class="container">
+    <mat-toolbar>
+        <span class="fill-remaning-space"></span>
+        <span>Veiculos</span>
+        <span class="fill-remaning-space"></span>
+    </mat-toolbar>
+</div>
+<div class="container">
+    <form [formGroup]="service.form" class="normal-form">
+        <mat-grid-list cols="1" rowHeight="300px">
+            <mat-grid-title>
+                <div class="controles-container">
+                    <input type="hidden" formControlName="$key">
+                    <mat-form-field >
+                        <input formControlName="placa" matInput placeholder="Placa">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input formControlName="chassi" matInput placeholder="Chassi">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input formControlName="renavam" matInput placeholder="Renavam">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input formControlName="modelo" matInput placeholder="Modelo">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input formControlName="marca" matInput placeholder="Marca">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input formControlName="ano" matInput placeholder="Ano">
+                    </mat-form-field>
+                </div>
+                <div class="button-row">
+                    <button mat-raised-button color="primary" type="submit">Salvar</button>
+                </div>
+            </mat-grid-title>
+        </mat-grid-list>
+    </form>
+</div>
+
+<!-- <form class="veiculo-form">
+    <mat-form-field class="veiculo-full-width">
+        <mat-label>Placa</mat-label>
+        <input matInput placeholder="Ex. AAA-0000" value="">
+    </mat-form-field>
+
+    <mat-form-field class="veiculo-full-width">
+        <mat-label>chassi</mat-label>
+        <input matInput placeholder="Ex. abc123def456ghi78" value="">
+    </mat-form-field>
+
+    <mat-form-field class="veiculo-full-width">
+        <mat-label>Renavam</mat-label>
+        <input matInput placeholder="Ex. 00123456791" value="">
+    </mat-form-field>
+
+    <mat-form-field class="veiculo-full-width">
+        <mat-label>Modelo</mat-label>
+        <input matInput placeholder="Ex. Siena" value="">
+    </mat-form-field>
+
+    <mat-form-field class="veiculo-full-width">
+        <mat-label>Marca</mat-label>
+        <input matInput placeholder="Ex. Fiat" value="">
+    </mat-form-field>
+
+    <mat-form-field class="veiculo-full-width">
+        <mat-label>Ano</mat-label>
+        <input matInput placeholder="Ex. 03/04" value="">
+    </mat-form-field>
+
+    <section>
+        <div class="button-row">
+
+            <button mat-button color="primary">Primary</button>
+
+        </div>
+    </section>
+
+</form> -->
