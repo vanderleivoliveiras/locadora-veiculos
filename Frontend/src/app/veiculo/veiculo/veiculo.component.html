@@ -1,11 +1,3 @@
-
-<div class="container">
-    <mat-toolbar>
-        <span class="fill-remaning-space"></span>
-        <span>Veiculos</span>
-        <span class="fill-remaning-space"></span>
-    </mat-toolbar>
-</div>
 <div class="container">
     <form [formGroup]="service.form" class="normal-form">
         <mat-grid-list cols="1" rowHeight="300px">
@@ -32,7 +24,8 @@
                     </mat-form-field>
                 </div>
                 <div class="button-row">
-                    <button mat-raised-button color="primary" type="submit">Salvar</button>
+                    <button mat-raised-button color="primary" (click)="onSalvar()" type="submit">Salvar</button>
+                    <button mat-raised-button color="warn" (click)="onLimpar()">Limpar</button>
                 </div>
             </mat-grid-title>
         </mat-grid-list>

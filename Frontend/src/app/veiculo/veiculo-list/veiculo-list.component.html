@@ -1,0 +1,54 @@
+<div class="search-div">
+    <button mat-raised-button>
+        <mat-icon>add</mat-icon>Criar
+    </button>
+</div>
+<div class="mat-elevation-z8">
+    <mat-table [dataSource]="listData">
+        <ng-container matColumnDef="Placa">
+            <mat-header-cell *matHeaderCellDef>Placa</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.placa}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Chassi">
+            <mat-header-cell *matHeaderCellDef>Chassi</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.chassi}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Renavam">
+            <mat-header-cell *matHeaderCellDef>Renavam</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.renavam}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Modelo">
+            <mat-header-cell *matHeaderCellDef>Modelo</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.modelo}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Marca">
+            <mat-header-cell *matHeaderCellDef>Marca</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.marca}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Ano">
+            <mat-header-cell *matHeaderCellDef>Ano</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.ano}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <button mat-icon-button><mat-icon>launch</mat-icon></button>
+                <button mat-icon-button color="warn"><mat-icon>delete_outline</mat-icon></button>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="loading">
+            <mat-footer-cell *matFooterCellDef colspan="6">
+                Carregando...
+            </mat-footer-cell>
+        </ng-container>
+        <ng-container matColumnDef="noData">
+            <mat-footer-cell *matFooterCellDef colspan="6">
+                Sem dados para exibir.
+            </mat-footer-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listData!=null}"></mat-footer-row>
+        <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(listData!=null && listData.data.length==0)}"></mat-footer-row>
+    </mat-table>
+</div>

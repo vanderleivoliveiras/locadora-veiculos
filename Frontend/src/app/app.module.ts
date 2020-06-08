@@ -14,11 +14,16 @@ import {VeiculoService} from './share/veiculo.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
+import { VeiculoListComponent } from './veiculo/veiculo-list/veiculo-list.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VeiculoComponent
+    VeiculoComponent,
+    VeiculoListComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +37,10 @@ import {MatButtonModule} from '@angular/material/button';
     ReactiveFormsModule,
     MatGridListModule,
     MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule,
+    MatIconModule,
+    MatSortModule
   ],
   providers: [VeiculoService],
   bootstrap: [AppComponent],
