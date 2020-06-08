@@ -47,7 +47,11 @@ export class VeiculoService {
   }
 
   atualizarVeiculo(veiculo: veiculo){
-    return this.webService.patch('veiculo', veiculo);
+    return this.webService.patch(`veiculo/${veiculo._id}`, veiculo);
+  }
+
+  excluirVeiculo(id: string){
+    return this.webService.delete(`veiculo/${id}`)
   }
 
   popularForm(veiculo){

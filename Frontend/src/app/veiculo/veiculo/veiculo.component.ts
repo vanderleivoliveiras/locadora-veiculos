@@ -19,9 +19,15 @@ export class VeiculoComponent implements OnInit {
   veiculo = new veiculo();
 
 
-  onSalvar(){    
-    this.service.form;
-    this.service.criarVeiculo(new veiculo());
+  onSalvar(){ 
+    this.veiculo = this.service.form.value;
+    if(this.veiculo._id == ""){
+    this.service.criarVeiculo(this.veiculo)
+      .subscribe(() => {});
+    }
+    else{
+      this.service.atualizarVeiculo(this.veiculo).subscribe(() => {});
+    }
     this.onClose();
   }
 

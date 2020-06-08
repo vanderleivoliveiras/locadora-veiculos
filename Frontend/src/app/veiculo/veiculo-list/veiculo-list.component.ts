@@ -16,16 +16,12 @@ export class VeiculoListComponent implements OnInit {
 
   listData: MatTableDataSource<any>;
   displayedColumns: string[] = ['Placa','Chassi','Renavam','Modelo','Marca','Ano','actions'];
-
-  teste: {_id:string, placa: string, chassi: string, renavam: string, modelo: string, marca: string, ano: string }[] = [
-    {_id:"string", placa: "string", chassi: "string", renavam: "string", modelo: "string", marca: "string", ano: "string"  },
-    {_id:"string", placa: "string", chassi: "string", renavam: "string", modelo: "string", marca: "string", ano: "string"  },
-    {_id:"string", placa: "string", chassi: "string", renavam: "string", modelo: "string", marca: "string", ano: "string"  }
-];
+  
+  veiculos: veiculo[] = [];
 
   ngOnInit(): void {
     this.veiculoService.getListVeiculo().subscribe(
-      list => {let array = this.teste.map(item => {
+      (veiculos:veiculo[]) => {let array = veiculos.map(item => {
         return {
           $key: "",
           _id: item._id,
@@ -57,6 +53,7 @@ export class VeiculoListComponent implements OnInit {
   }
 
   onExcluir(row){
-    //Chamar excluir do back
+    this.veiculoService.excluirVeiculo(row._id)
+      .subscribe((veiculos:veiculo) => this.veiculos = this.veiculos.filter(f => f._id != veiculos._id))
   }
 }  

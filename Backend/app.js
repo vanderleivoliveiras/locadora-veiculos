@@ -15,7 +15,11 @@ app.use(function(req, res, next) {
 app.post('/veiculo', (req, res) => {
     var veiculo = new Veiculo();
     veiculo.placa = req.body.placa;
+    veiculo.chassi = req.body.chassi;
     veiculo.modelo = req.body.modelo;
+    veiculo.renavam = req.body.renavam;
+    veiculo.marca = req.body.marca;
+    veiculo.ano = req.body.ano;
 
     veiculo.save()    
     .then(() => res.send(veiculo))
