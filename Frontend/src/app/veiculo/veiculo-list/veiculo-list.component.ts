@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { VeiculoService } from 'src/app/share/veiculo.service';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import veiculo from 'src/app/models/veiculo';
-import {MatDialog} from '@angular/material/dialog'
+import { MatDialog } from '@angular/material/dialog'
 import { VeiculoComponent } from '../veiculo/veiculo.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-veiculo-list',
@@ -12,16 +13,16 @@ import { VeiculoComponent } from '../veiculo/veiculo.component';
 })
 export class VeiculoListComponent implements OnInit {
 
-  constructor(private veiculoService: VeiculoService, public dialog: MatDialog) { }
+  constructor(private veiculoService: VeiculoService, public dialog: MatDialog, private _snackBar: MatSnackBar) { }
 
-  listData: MatTableDataSource<any>;
-  displayedColumns: string[] = ['Placa','Chassi','Renavam','Modelo','Marca','Ano','actions'];
-  
+  veiculosData: MatTableDataSource<any>;
+  displayedColumns: string[] = ['Placa', 'Chassi', 'Renavam', 'Modelo', 'Marca', 'Ano', 'actions'];
   veiculos: veiculo[] = [];
 
   ngOnInit(): void {
     this.veiculoService.getListVeiculo().subscribe(
-      (veiculos:veiculo[]) => {let array = veiculos.map(item => {
+      (veiculos: veiculo[]) => {
+      this.veiculos = veiculos.map(item => {
         return {
           $key: "",
           _id: item._id,
@@ -33,27 +34,45 @@ export class VeiculoListComponent implements OnInit {
           ano: item.ano
         };
       });
-      
-      this.listData = new MatTableDataSource(array);
-    });
+
+        this.veiculosData = new MatTableDataSource(this.veiculos);
+      });
   }
 
-  onCriarVeiculo(){
+  onCriarVeiculo() {
     this.veiculoService.initializeFormGroup();
-    const dialogRef = this.dialog.open(VeiculoComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+    this.dialog.open(VeiculoComponent)
+      .afterClosed()
+      .subscribe(() => {
+        this.ngOnInit();
+      });
   }
 
-  onEditar(row){
+  onEditar(row) {
     this.veiculoService.popularForm(row);
-    this.dialog.open(VeiculoComponent);
+    const dialogRef = this.dialog.open(VeiculoComponent)
+      .afterClosed()
+      .subscribe(() => {
+        this.ngOnInit();
+      });
   }
 
-  onExcluir(row){
-    this.veiculoService.excluirVeiculo(row._id)
-      .subscribe((veiculos:veiculo) => this.veiculos = this.veiculos.filter(f => f._id != veiculos._id))
+  onExcluir(veiculo) {
+    this.veiculoService.excluirVeiculo(veiculo._id)
+      .subscribe(() => {
+        this.veiculos = this.veiculos.filter(f => f._id != veiculo._id)
+        this.veiculosData = new MatTableDataSource(this.veiculos);
+        this.openSnackBar("Veículo Excluido com Sucesso!", false)
+      },
+        erro => {
+          this.openSnackBar(erro, true)
+        })
+  }
+
+  openSnackBar(msgSnackbar: string, erro: boolean) {
+    this._snackBar.open(msgSnackbar, '', {
+      duration: 7000,
+      panelClass: [erro ? 'red-snackbar' : 'green-snackbar']
+    });
   }
 }  

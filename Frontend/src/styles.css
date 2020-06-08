@@ -11,18 +11,21 @@ div.container{
     flex: 1 1 auto;
 }
 
+.mat-dialog-container{
+    overflow: hidden;
+}
+
 form.normal-form{
     margin: 10px;
+    height: 220px;
+    overflow: hidden;
 }      
 
 .controles-container{
-    width: 100%;
-    padding: 5%;
+    width: 500px;
+    display:flex;
 }
 
-.controles-container > *{
-    width: 60%;
-}
 
 .button-row button{
     margin: 5px;
@@ -59,4 +62,11 @@ mat-footer-row mat-footer-cell{
 .search-form-field div.mat-form-field-suffix button{
     height: 32px;
     width: 32px;
+}
+
+.green-snackbar {
+    background: green;
+}
+.red-snackbar {
+    background: red;
 }
