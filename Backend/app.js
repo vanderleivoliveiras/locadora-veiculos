@@ -52,3 +52,5 @@ app.delete('/veiculo/:id', (req, res) => {
 });
 
 app.listen(3000, () => console.log("Server connected on 3000"));
+
+module.exports.app = app;
