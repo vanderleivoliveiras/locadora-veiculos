@@ -3,6 +3,7 @@ import {FormGroup, FormControl} from '@angular/forms'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WebService } from '../web.service';
 import veiculo from '../models/veiculo';
+import * as _ from 'lodash';
 @Injectable({
   providedIn: 'root'
 })
@@ -47,5 +48,18 @@ export class VeiculoService {
 
   atualizarVeiculo(veiculo: veiculo){
     return this.webService.patch('veiculo', veiculo);
+  }
+
+  popularForm(veiculo){
+    this.form.setValue({
+      $key: new FormControl(null),
+      _id: veiculo._id,
+      placa: veiculo.placa,
+      chassi: veiculo.chassi,
+      renavam: veiculo.renavam,
+      modelo: veiculo.modelo,
+      marca: veiculo.marca,
+      ano: veiculo.ano,
+    });
   }
 }

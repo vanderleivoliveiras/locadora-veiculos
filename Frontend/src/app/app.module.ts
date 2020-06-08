@@ -18,6 +18,7 @@ import { VeiculoListComponent } from './veiculo/veiculo-list/veiculo-list.compon
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSortModule} from '@angular/material/sort';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -40,10 +41,12 @@ import {MatSortModule} from '@angular/material/sort';
     MatButtonModule,
     MatTableModule,
     MatIconModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule
   ],
   providers: [VeiculoService],
   bootstrap: [AppComponent],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
+  entryComponents:[VeiculoComponent]
 })
 export class AppModule { }
